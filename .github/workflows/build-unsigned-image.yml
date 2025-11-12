@@ -25,10 +25,7 @@ jobs:
         run: |
           set -eux
           apt-get update
-          apt-get install -y libc6-dev-arm64-cross
-          wget https://github.com/zenwav/sdllvm_arm/releases/download/sdllvm_arm/sdllvm_arm.tar.gz
-          mkdir sdllvm/
-          tar -xzf sdllvm_arm.tar.gz -C sdllvm/
+          apt-get install -y libc6-dev-arm64-cross gcc-14-aarch64-linux-gnu
           ./build.sh "${{ matrix.target }}"
 
       - name: Upload unsigned ABL artifact for target
