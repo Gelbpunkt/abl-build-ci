@@ -1,0 +1,30 @@
+From 8c8312a4fd59bf91260993c5148a45e74b3fd389 Mon Sep 17 00:00:00 2001
+From: Kancy Joe <54024877+sunflower2333@users.noreply.github.com>
+Date: Wed, 12 Nov 2025 20:03:21 +0000
+Subject: [PATCH] ignore warnings during build
+
+---
+ BaseTools/Source/C/Makefiles/header.makefile | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/BaseTools/Source/C/Makefiles/header.makefile b/BaseTools/Source/C/Makefiles/header.makefile
+index 40604b3794..6a38a251a1 100644
+--- a/BaseTools/Source/C/Makefiles/header.makefile
++++ b/BaseTools/Source/C/Makefiles/header.makefile
+@@ -70,9 +70,13 @@ BUILD_OPTFLAGS = -O2 $(EXTRA_OPTFLAGS)
+ ifeq ($(DARWIN),Darwin)
+ # assume clang or clang compatible flags on OS X
+ BUILD_CFLAGS = -MD -fshort-wchar -fno-strict-aliasing -Wall -Werror \
++-Wno-stringop-truncation -Wno-vla-parameter -Wno-stringop-overflow \
++-Wno-use-after-free -Wno-dangling-pointer \
+ -Wno-deprecated-declarations -Wno-self-assign -Wno-unused-result -nostdlib -g
+ else
+ BUILD_CFLAGS = -MD -fshort-wchar -fno-strict-aliasing -fwrapv \
++-Wno-stringop-truncation -Wno-vla-parameter -Wno-stringop-overflow \
++-Wno-use-after-free -Wno-dangling-pointer \
+ -fno-delete-null-pointer-checks -Wall -Werror \
+ -Wno-deprecated-declarations \
+ -Wno-unused-result -nostdlib -g
+-- 
+2.50.1
+

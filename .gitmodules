@@ -1,3 +1,6 @@
 [submodule "abl-pineapple"]
 	path = abl-pineapple
 	url = https://git.codelinaro.org/clo/la/abl/tianocore/edk2.git
+[submodule "sdllvm/10.0"]
+	path = sdllvm/10.0
+	url = https://github.com/map220v/QCOM_LLVM_10.0
