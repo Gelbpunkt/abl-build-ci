@@ -26,6 +26,7 @@ jobs:
           set -eux
           apt-get update
           apt-get install -y libc6-dev-arm64-cross gcc-14-aarch64-linux-gnu
+          git submodule update --init --depth=1
           ./build.sh "${{ matrix.target }}"
 
       - name: Upload unsigned ABL artifact for target
