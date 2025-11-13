@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - target: waipio
@@ -37,7 +38,7 @@ jobs:
         run: |
           set -eux
           sudo apt-get update
-          sudo apt-get install -y clang gcc-14-aarch64-linux-gnu
+          sudo apt-get install -y clang gcc-14-aarch64-linux-gnu uuid-dev
           git submodule update --init --depth=1
           ./build.sh "${{ matrix.abl_dir }}" "${{ matrix.patch_dir }}" "${{ matrix.target }}"
 
