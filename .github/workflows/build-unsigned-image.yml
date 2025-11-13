@@ -21,9 +21,9 @@ jobs:
             abl_dir: abl-pineapple
           - target: pineapple
             patch_dir: patch-pineapple
-            abl_dir: abl/pineapple
+            abl_dir: abl-pineapple
           - target: sun
-            patch_dir: patches-pineapple
+            patch_dir: patch-pineapple
             abl_dir: abl-pineapple
 
     steps:
