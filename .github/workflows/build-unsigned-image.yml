@@ -14,11 +14,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: waipio
+          - target: kona 
             patch_dir: patch-pineapple
             abl_dir: abl-pineapple
-            sec_version: "7"
-          - target: kailua
+            sec_version: "6"
+          - target: kalama
             patch_dir: patch-pineapple
             abl_dir: abl-pineapple
             sec_version: "7"
