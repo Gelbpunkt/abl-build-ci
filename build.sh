@@ -10,6 +10,7 @@ ABL_SRC=$1
 PATCH_DIR=$2
 TARGET=$3
 SEC_VERSION=$4
+set -e
 
 if [ -z "$ABL_SRC" ] || [ -z "$PATCH_DIR" ] || [ -z "$TARGET" ] || [ -z "$SEC_VERSION" ]; then
     echo "Usage:"
@@ -67,13 +68,29 @@ done
 
 # Build
 cd $ABL_SRC
-make all BOOTLOADER_OUT=out/ CLANG_BIN=$SDLLVM_PATH/$SDLLVM_VERSION/bin/ "${MAKE_FLAGS[@]}"
-if [ $? -ne 0 ]; then
+if ! make all BOOTLOADER_OUT=out/ CLANG_BIN=$SDLLVM_PATH/$SDLLVM_VERSION/bin/ "${MAKE_FLAGS[@]}"; then
     echo "Build failed!"
     exit 1
 fi
 cd ..
 
+# Verify unsigned_abl.elf was created
+if [ ! -f "$ROOT_DIR/unsigned_abl.elf" ]; then
+    echo "Error: unsigned_abl.elf not found after build!"
+    exit 1
+fi
+
 # Sign
 # Use qtestsign to sign abl
-./sectools/qtestsign/qtestsign.py -v$SEC_VERSION abl -o abl_"$TARGET"_testsigned.elf $ROOT_DIR/unsigned_abl.elf
+if ! ./sectools/qtestsign/qtestsign.py -v$SEC_VERSION abl -o abl_"$TARGET"_testsigned.elf $ROOT_DIR/unsigned_abl.elf; then
+    echo "Signing failed!"
+    exit 1
+fi
+
+# Verify signed output was created
+if [ ! -f "abl_${TARGET}_testsigned.elf" ]; then
+    echo "Error: signed abl_${TARGET}_testsigned.elf not found!"
+    exit 1
+fi
+
+echo "Build and signing completed successfully!"
