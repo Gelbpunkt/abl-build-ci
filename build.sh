@@ -18,6 +18,23 @@ if [ -z "$ABL_SRC" ] || [ -z "$PATCH_DIR" ] || [ -z "$TARGET" ]; then
     exit 1
 fi
 
+function check_tool() {
+	if ! which "$1" &>/dev/null; then
+		echo "$1 not found" >&2
+		exit 1
+	fi
+}
+
+# Check required tools
+check_tool git
+check_tool awk
+check_tool sed
+check_tool grep
+check_tool patch
+if ! [ -d .git ]; then
+    exit 0
+fi
+
 # Setting up env
 ROOT_DIR=$PWD/
 source $ROOT_DIR/$ABL_SRC/QcomModulePkg/build.config.msm.$TARGET
@@ -36,7 +53,16 @@ if [ ! -d $PATCH_DIR ]; then
     exit 1
 fi
 
-git am $PATCH_DIR/*
+for patch in "$PATCH_DIR"/*.patch; do
+    if ! [ -f "$patch" ]; then
+        continue
+    fi
+    if patch -d "$ABL_SRC" -sfRp1 --dry-run < "$patch" &>/dev/null; then
+        continue
+    fi
+    echo "Apply $patch to $ABL_SRC"
+    patch -d "$ABL_SRC" -tNp1 < "$patch"
+done
 
 # Build
 cd $ABL_SRC
