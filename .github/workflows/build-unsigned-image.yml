@@ -37,9 +37,9 @@ jobs:
         run: |
           set -eux
           sudo apt-get update
-          sudo apt-get install -y libc6-dev-arm64-cross gcc-14-aarch64-linux-gnu
+          sudo apt-get install -y clang gcc-14-aarch64-linux-gnu
           git submodule update --init --depth=1
-          ./build.sh "${{ matrix.target }}"
+          ./build.sh "${{ matrix.abl_dir }}" "${{ matrix.patch_dir }}" "${{ matrix.target }}"
 
       - name: Upload unsigned ABL artifact for target
         uses: actions/upload-artifact@v4

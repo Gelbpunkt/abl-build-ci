@@ -1,8 +1,8 @@
 #!/bin/bash
 # Usage:
-#   ./build.sh <dir> <codename>
+#   ./build.sh <abl-dir> <patch-dir> <target>
 # Example:
-#   ./build.sh abl-pineapple pineapple
+#   ./build.sh abl-pineapple patch-pineapple pineapple
 
 # SDLLVM Download:
 #   https://github.com/map220v/QCOM_LLVM_10.0/
@@ -12,9 +12,9 @@ TARGET=$3
 
 if [ -z "$ABL_SRC" ] || [ -z "$PATCH_DIR" ] || [ -z "$TARGET" ]; then
     echo "Usage:"
-    echo -e "\t$0  <dir> <codename>"
+    echo -e "\t$0 <abl-dir> <patch-dir> <target>"
     echo "Example:"
-    echo -e "\t$0 abl-pineapple pineapple"
+    echo -e "\t./build.sh abl-pineapple patch-pineapple pineapple"
     exit 1
 fi
 
