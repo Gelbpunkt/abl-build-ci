@@ -4,3 +4,6 @@
 [submodule "sdllvm/10.0"]
 	path = sdllvm/10.0
 	url = https://github.com/map220v/QCOM_LLVM_10.0
+[submodule "sectools/qtestsign"]
+	path = sectools/qtestsign
+	url = https://github.com/msm8916-mainline/qtestsign
