@@ -1,14 +1,14 @@
-From 8c8312a4fd59bf91260993c5148a45e74b3fd389 Mon Sep 17 00:00:00 2001
-From: Kancy Joe <54024877+sunflower2333@users.noreply.github.com>
-Date: Wed, 12 Nov 2025 20:03:21 +0000
-Subject: [PATCH] ignore warnings during build
+From 8b8e86b2ec6420f4de463e8e2905191f675649ef Mon Sep 17 00:00:00 2001
+From: KancyJoe <kancy2333@outlook.com>
+Date: Sat, 15 Nov 2025 12:34:37 +0000
+Subject: [PATCH 2/5] ignore basetool warnings
 
 ---
  BaseTools/Source/C/Makefiles/header.makefile | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/BaseTools/Source/C/Makefiles/header.makefile b/BaseTools/Source/C/Makefiles/header.makefile
-index 40604b3794..6a38a251a1 100644
+index 40604b37..6a38a251 100644
 --- a/BaseTools/Source/C/Makefiles/header.makefile
 +++ b/BaseTools/Source/C/Makefiles/header.makefile
 @@ -70,9 +70,13 @@ BUILD_OPTFLAGS = -O2 $(EXTRA_OPTFLAGS)
@@ -26,5 +26,5 @@ index 40604b3794..6a38a251a1 100644
  -Wno-deprecated-declarations \
  -Wno-unused-result -nostdlib -g
 -- 
-2.50.1
+2.43.0
 
