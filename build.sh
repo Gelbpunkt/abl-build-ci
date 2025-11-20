@@ -4,7 +4,7 @@
 # Example:
 #   ./build.sh abl-pineapple patch-pineapple pineapple
 
-source env
+source env.sh
 
 ABL_SRC=$1
 PATCH_DIR=$2
@@ -39,7 +39,7 @@ fi
 # Setting up env
 ROOT_DIR=$PWD/
 source $ROOT_DIR/$ABL_SRC/QcomModulePkg/build.config.msm.$TARGET
-SDLLVM_PATH=$ROOT_DIR/sdllvm/
+SDLLVM_PATH=$ROOT_DIR/sdllvm/$SDLLVM_VER
 
 if [ ! -d "$SDLLVM_PATH" ]; then
     echo "SDLLVM directory not found!"
@@ -70,7 +70,7 @@ done
 
 # Build
 cd $ABL_SRC
-if ! make all BOOTLOADER_OUT=out/ CLANG_BIN=$SDLLVM_PATH/$SDLLVM_VERSDLLVM_VER/bin/ "${MAKE_FLAGS[@]}"; then
+if ! make all BOOTLOADER_OUT=out/ CLANG_BIN=$SDLLVM_PATH/bin/ "${MAKE_FLAGS[@]}"; then
     echo "Build failed!"
     exit 1
 fi

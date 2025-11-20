@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 source env.sh
 
 wget $SDLLVM_URL -O sdllvm/sdllvm.zip &> /dev/null
