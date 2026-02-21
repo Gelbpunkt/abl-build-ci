@@ -36,17 +36,6 @@ if ! [ -d .git ]; then
     exit 0
 fi
 
-# Setting up env
-ROOT_DIR=$PWD/
-source $ROOT_DIR/$ABL_SRC/QcomModulePkg/build.config.msm.$TARGET
-SDLLVM_PATH=$ROOT_DIR/sdllvm/$SDLLVM_VER
-
-if [ ! -d "$SDLLVM_PATH" ]; then
-    echo "SDLLVM directory not found!"
-    echo "Please download toolchain!"
-    exit 1
-fi
-
 # Apply Patch
 if [ ! -d $PATCH_DIR ]; then
     echo "Patch dir: $PATCH_DIR does not exist"
@@ -67,6 +56,17 @@ for patch in "$PATCH_DIR"/*.patch; do
     echo "Apply $patch to $ABL_SRC"
     patch -d "$ABL_SRC" -tNp1 < "$patch"
 done
+
+# Setting up env
+ROOT_DIR=$PWD/
+source $ROOT_DIR/$ABL_SRC/QcomModulePkg/build.config.msm.$TARGET
+SDLLVM_PATH=$ROOT_DIR/sdllvm/$SDLLVM_VER
+
+if [ ! -d "$SDLLVM_PATH" ]; then
+    echo "SDLLVM directory not found!"
+    echo "Please download toolchain!"
+    exit 1
+fi
 
 # Build
 cd $ABL_SRC
