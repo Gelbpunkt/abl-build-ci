@@ -14,22 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - target: kona
+          - target: waipio
             patch_dir: patch-pineapple
             abl_dir: abl-pineapple
             sec_version: "6"
-          - target: kalama
-            patch_dir: patch-pineapple
-            abl_dir: abl-pineapple
-            sec_version: "7"
-          - target: pineapple
-            patch_dir: patch-pineapple
-            abl_dir: abl-pineapple
-            sec_version: "7"
-          - target: sun
-            patch_dir: patch-pineapple
-            abl_dir: abl-pineapple
-            sec_version: "7"
 
     steps:
       - name: Checkout repository
