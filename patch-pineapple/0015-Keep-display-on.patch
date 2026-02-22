@@ -1,0 +1,31 @@
+From 51d9419c17147e2478a7cc5f0961344b541ad385 Mon Sep 17 00:00:00 2001
+From: Aelin Reidel <aelin@travitia.xyz>
+Date: Sun, 22 Feb 2026 01:47:59 +0100
+Subject: [PATCH] Keep display on
+
+---
+ QcomModulePkg/Library/BootLib/BootESP.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/QcomModulePkg/Library/BootLib/BootESP.c b/QcomModulePkg/Library/BootLib/BootESP.c
+index 3d35f36591..48d1533fa0 100644
+--- a/QcomModulePkg/Library/BootLib/BootESP.c
++++ b/QcomModulePkg/Library/BootLib/BootESP.c
+@@ -72,10 +72,10 @@ STATIC
+ VOID EFIAPI
+ DisableDisplayOnExitBootServices (IN EFI_EVENT Event, IN VOID *Context)
+ {
+-  if (mDisplayPowerProtocol != NULL) {
+-    (void)mDisplayPowerProtocol->SetDisplayPowerState (mDisplayPowerProtocol,
+-                                                       EfiDisplayPowerStateOff);
+-  }
++  //if (mDisplayPowerProtocol != NULL) {
++  //  (void)mDisplayPowerProtocol->SetDisplayPowerState (mDisplayPowerProtocol,
++  //                                                     EfiDisplayPowerStateOff);
++  //}
+ }
+ 
+ // Register callback for ExitBootServices to disable display
+-- 
+2.53.0
+
